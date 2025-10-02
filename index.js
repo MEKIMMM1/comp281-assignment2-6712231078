@@ -26,7 +26,20 @@ function main() {
 	// ต้องมีครบ 6 อย่าง: ภูเขา, พระอาทิตย์, ท้องนา, ต้นไม้, บ้าน/กระท่อม, แม่น้ำ
 	// องค์ประกอบอื่น ๆ เพิ่มเติมได้ตามต้องการ (เช่น ท้องฟ้า, ก้อนเมฆ ฯลฯ)
 
+	//สร้างพื้นหินน
+	// สร้าง geometry แบบ Box (16 x 0.2 x 16)
+		const stoneGeometry = new THREE.BoxGeometry(16, 0.2, 16); // ใช้ MeshStandardMaterial สีเทาหิน
+		const stoneMaterial = new THREE.MeshStandardMaterial({
+		color: 0x555555, });// เทาเข้มเหมือนหิน
+		const stoneFloor = new THREE.Mesh(stoneGeometry, stoneMaterial); // สร้าง mesh
+		stoneFloor.receiveShadow = true; // เปิดรับเงา
+		stoneFloor.position.y = -0.1; // วางพื้นให้กึ่งกลางตรงแกน Y = -0.1 (เพราะความหนา 0.2)
+		M3D.scene.add(stoneFloor); // เพิ่มเข้า scene
+
 	
+
+
+
 	// Stats
 	const stats = new Stats(); // สร้าง Stats เพื่อตรวจสอบประสิทธิภาพ
 	document.body.appendChild(stats.dom); // เพิ่ม Stats ลงใน body ของ HTML
@@ -42,7 +55,7 @@ function main() {
 
 		// UPDATE state of objects here
 		// TODO: อัปเดตสถานะของวัตถุต่างๆ ที่ต้องการในแต่ละเฟรม (เช่น การเคลื่อนที่, การหมุน ฯลฯ)
-
+		
 
 		// RENDER scene and camera
 		M3D.renderer.render(M3D.scene, M3D.camera); // เรนเดอร์ฉาก
